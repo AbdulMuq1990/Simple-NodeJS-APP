@@ -65,3 +65,18 @@ To start the application, run the below command in the terminal:
 npm start
 ```
 
+# This Script is to Install NodeJS & NPM on Ubuntu 22.04 in case if above installation doesn't work
+#!/bin/bash
+
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+NODE_MAJOR=20
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+
+sudo apt-get update
+# 2>/dev/null is given because it will give warning on UI as popup display of Linux to skip that use this 
+sudo apt-get install nodejs -y 2>/dev/null
+sudo apt install npm -y
