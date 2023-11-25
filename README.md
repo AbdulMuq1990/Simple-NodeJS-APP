@@ -82,7 +82,7 @@ echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.co
 
 sudo apt-get update
 
-# 2>/dev/null is given because it will give warning UI popup of Linux to skip that 
+## 2>/dev/null is given because it will give warning UI popup of Linux to skip that 
 sudo apt-get install nodejs -y 2>/dev/null
 
 sudo apt install npm -y
