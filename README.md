@@ -89,7 +89,7 @@ sudo apt install npm -y
 
 sudo npm install pm2 -g
 
-=======================================================================================================
+============================================================
 
 # To start the Nodejs application 
 
@@ -97,11 +97,12 @@ npm install
 
 pm2 start index.js
 
-=========================================================================================================
+============================================================
 
 C-name in Nginx (Redirection to another dns)
 
 Create a file in sudo vim /etc/nginx/sites-enabled/myapp
+
 
 server {
     listen 800;
@@ -115,7 +116,7 @@ server {
     }
 }
 
-=========================================================================================
+==============================================================
 
 If you want to Run Nodejs app in nginx server (Connect Nodejs with Nginx server)
 
