@@ -86,3 +86,89 @@ sudo apt-get update
 sudo apt-get install nodejs -y 2>/dev/null
 
 sudo apt install npm -y
+
+sudo npm install pm2 -g
+
+=======================================================================================================
+
+# To start the Nodejs application 
+
+npm install
+
+pm2 start index.js
+
+=========================================================================================================
+
+C-name in Nginx (Redirection to another dns)
+
+Create a file in sudo vim /etc/nginx/sites-enabled/myapp
+
+server {
+    listen 800;
+    server_name http://localhost;
+    location /hello {
+      return 301 https://google.com;
+    }
+    location /xyz {
+      return 301 https://facebook.com;
+
+    }
+}
+
+=========================================================================================
+
+If you want to Run Nodejs app in nginx server (Connect Nodejs with Nginx server)
+
+Set port 3000 in index.js file in Nodejs source code
+
+
+Goto Nginx & create a file my-node-app in Sites-enabled dir # sudo vim /etc/nginx/sites-enabled/my-node-app
+
+server {
+    listen 8000;
+    server_name http://15.206.189.193:3000/;	Replace the ServerIp in which nodejs is running & port number you have given in index.js
+
+    location / {
+        proxy_pass http://localhost:3000; # Change the port if your Node.js app runs on a different port
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+}
+
+========================================================
+
+# If you want to redirect to google same above Node js app
+
+server {
+    listen 8000;
+    server_name http://15.206.189.193:3000/;
+
+    location / {
+        proxy_pass http://localhost:3000; # Change the port if your Node.js app runs on a different port
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+    location /hello {
+      return 301 https://google.com;
+    }
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+}
+
+============================================
+
+
