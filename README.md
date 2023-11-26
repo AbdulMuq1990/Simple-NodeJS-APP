@@ -103,7 +103,6 @@ C-name in Nginx (Redirection to another dns)
 
 Create a file in sudo vim /etc/nginx/sites-enabled/myapp
 
-
 server {
     listen 800;
     server_name http://localhost;
@@ -115,6 +114,7 @@ server {
 
     }
 }
+
 
 ==============================================================
 
